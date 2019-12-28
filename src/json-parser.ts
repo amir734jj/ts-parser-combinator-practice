@@ -4,7 +4,6 @@
 
 import * as P from "parsimmon";
 import {Parser} from "parsimmon";
-// import util from 'util';
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -107,15 +106,17 @@ let JSONParser = P.createLanguage({
 ///////////////////////////////////////////////////////////////////////
 
 let text = `\
-{"name":"mkyong.com","messages":["msg 1","msg 2","msg 3"],"age":100}
+{
+    "name": "mkyong.com",
+    "messages": ["msg 1", "msg 2", "msg 3"],
+    "age": 100,
+    "prop": false,
+    "propn": {
+        "name": "Amir"
 
+    }
+}
 `;
 
-function prettyPrint(x: any) {
-  // let opts = { depth: null, colors: "auto" };
-  // let s = util.inspect(x, opts);
-  console.log(x);
-}
-
 let ast = JSONParser.value.tryParse(text);
-prettyPrint(ast);
+console.log(ast);
