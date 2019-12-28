@@ -28,7 +28,7 @@ let MathParser = P.createLanguage({
   expr: r => P.alt(r.sExpr2, r.sExpr1, r.number),
   sExpr1: r => P.seqMap(r.iExpr, P.optWhitespace, r.plusOrMinus, P.optWhitespace, r.expr, (a, s1, b, s2, c) => [a, b, c]),
   sExpr2: r => P.seqMap(r.iExpr, P.optWhitespace, r.multiplyOrDivide, P.optWhitespace, r.expr, (a, s1, b, s2, c) => [a, b, c]),
-  iExpr: r => P.alt(r.iExpr, r.number).notFollowedBy(r.operator),
+  iExpr: r => P.alt(r.iExpr, r.number),
 
   number: () =>
     token(P.regexp(/[0-9]+/))
